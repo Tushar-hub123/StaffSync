@@ -7,6 +7,15 @@ import RemoveEmployee from "../components/RemoveEmployee";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("addEmployee");
+  const [animate, setAnimate] = useState(false);
+
+  const handleTabChange = (key) => {
+    setAnimate(true);
+    setTimeout(() => {
+      setActiveTab(key);
+      setAnimate(false);
+    }, 200);
+  };
 
   const menuItems = [
     { key: "addEmployee", label: "Add Employee" },
@@ -17,16 +26,20 @@ export default function AdminDashboard() {
 
   return (
     <div style={styles.container}>
+      
       {/* Sidebar */}
       <div style={styles.sidebar}>
-        <h2 style={styles.logo}>Admin Panel</h2>
+        <h2 style={styles.logo}>StaffSync Admin</h2>
 
         <div style={styles.menu}>
           {menuItems.map((item) => (
             <button
               key={item.key}
-              style={activeTab === item.key ? styles.activeBtn : styles.btn}
-              onClick={() => setActiveTab(item.key)}
+              style={{
+                ...styles.btn,
+                ...(activeTab === item.key ? styles.activeBtn : {}),
+              }}
+              onClick={() => handleTabChange(item.key)}
             >
               {item.label}
             </button>
@@ -40,7 +53,12 @@ export default function AdminDashboard() {
           {menuItems.find((m) => m.key === activeTab)?.label}
         </h1>
 
-        <div style={styles.content}>
+        <div
+          style={{
+            ...styles.content,
+            ...(animate ? styles.fadeOut : styles.fadeIn),
+          }}
+        >
           {activeTab === "addEmployee" && <AddEmployee />}
           {activeTab === "createTask" && <CreateTask />}
           {activeTab === "taskHistory" && <TaskHistory />}
@@ -55,71 +73,87 @@ const styles = {
   container: {
     display: "flex",
     minHeight: "100vh",
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    background: "#f0f4f8",
+    fontFamily: "'Poppins', sans-serif",
+    background: "linear-gradient(135deg, #eef2ff, #f8fafc)",
   },
+
+  /* Sidebar */
   sidebar: {
-    width: "220px",
+    width: "260px",
     background: "linear-gradient(180deg, #4f46e5, #3b82f6)",
     color: "#fff",
-    padding: "30px 20px",
+    padding: "40px 25px",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    boxShadow: "5px 0 30px rgba(0,0,0,0.1)",
   },
+
   logo: {
     fontSize: "1.8rem",
     fontWeight: "700",
-    marginBottom: "40px",
-    textAlign: "center",
+    marginBottom: "50px",
     letterSpacing: "1px",
+    textAlign: "center",
   },
+
   menu: {
     display: "flex",
     flexDirection: "column",
-    width: "100%",
-    gap: "15px",
+    gap: "18px",
   },
+
   btn: {
-    padding: "12px 20px",
-    borderRadius: "12px",
+    padding: "14px 20px",
+    borderRadius: "14px",
     border: "none",
     cursor: "pointer",
     background: "rgba(255,255,255,0.1)",
     color: "#fff",
-    fontWeight: "600",
-    fontSize: "1rem",
-    transition: "0.3s",
+    fontWeight: "500",
+    fontSize: "15px",
+    transition: "all 0.3s ease",
   },
+
   activeBtn: {
-    padding: "12px 20px",
-    borderRadius: "12px",
-    border: "none",
-    cursor: "pointer",
     background: "#fff",
     color: "#3b82f6",
     fontWeight: "700",
-    fontSize: "1rem",
-    boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
-    transition: "0.3s",
+    transform: "translateX(6px)",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
   },
+
+  /* Main */
   main: {
     flex: 1,
-    padding: "40px",
+    padding: "50px",
   },
+
   title: {
-    fontSize: "2rem",
+    fontSize: "2.2rem",
     fontWeight: "700",
-    marginBottom: "30px",
+    marginBottom: "35px",
     color: "#1e293b",
-    textAlign: "center",
-  },
-  content: {
-    background: "#fff",
-    padding: "30px",
-    borderRadius: "20px",
-    boxShadow: "0 15px 30px rgba(0,0,0,0.1)",
-    minHeight: "400px",
     transition: "0.3s",
+  },
+
+  content: {
+    background: "white",
+    padding: "40px",
+    borderRadius: "25px",
+    boxShadow: "0 25px 50px rgba(0,0,0,0.08)",
+    minHeight: "500px",
+    transition: "all 0.3s ease",
+  },
+
+  fadeIn: {
+    opacity: 1,
+    transform: "translateY(0px)",
+    transition: "all 0.3s ease",
+  },
+
+  fadeOut: {
+    opacity: 0,
+    transform: "translateY(15px)",
+    transition: "all 0.2s ease",
   },
 };
