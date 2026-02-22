@@ -27,59 +27,66 @@ const RemoveEmployee = () => {
       emp.name.toLowerCase().includes(search.toLowerCase()) ||
       emp.email.toLowerCase().includes(search.toLowerCase())
   );
+return (
+  <div style={{ padding: "20px" }}>
+    <h2 style={{ marginBottom: "20px" }}>Remove Employee</h2>
 
-  return (
-    <div style={{ padding: "30px" }}>
-      <h2>Remove Employee</h2>
+    <input
+      type="text"
+      placeholder="Search employee..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      style={{
+        padding: "10px",
+        width: "100%",
+        maxWidth: "400px",
+        marginBottom: "20px",
+        borderRadius: "8px",
+        border: "1px solid #ccc"
+      }}
+    />
 
-      <input
-        type="text"
-        placeholder="Search employee..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+    {filteredEmployees.map((emp) => (
+      <div
+        key={emp._id}
         style={{
-          padding: "10px",
-          width: "300px",
-          marginBottom: "20px"
+          background: "#fff",
+          padding: "15px",
+          marginBottom: "12px",
+          borderRadius: "12px",
+          boxShadow: "0 5px 15px rgba(0,0,0,0.08)",
+          display: "flex",
+          flexDirection: window.innerWidth < 768 ? "column" : "row",
+          justifyContent: "space-between",
+          alignItems: window.innerWidth < 768 ? "flex-start" : "center",
+          gap: "10px"
         }}
-      />
+      >
+        <div>
+          <b>{emp.name}</b>
+          <p style={{ margin: 0, fontSize: "14px", color: "#6b7280" }}>
+            {emp.email}
+          </p>
+        </div>
 
-      {filteredEmployees.map((emp) => (
-        <div
-          key={emp._id}
+        <button
+          onClick={() => handleRemove(emp._id)}
           style={{
-            background: "#fff",
-            padding: "15px",
-            marginBottom: "10px",
-            borderRadius: "10px",
-            boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center"
+            background: "#ef4444",
+            color: "#fff",
+            border: "none",
+            padding: "8px 16px",
+            borderRadius: "20px",
+            cursor: "pointer",
+            width: window.innerWidth < 768 ? "100%" : "auto"
           }}
         >
-          <div>
-            <b>{emp.name}</b>
-            <p style={{ margin: 0 }}>{emp.email}</p>
-          </div>
-
-          <button
-            onClick={() => handleRemove(emp._id)}
-            style={{
-              background: "#ef4444",
-              color: "#fff",
-              border: "none",
-              padding: "8px 16px",
-              borderRadius: "20px",
-              cursor: "pointer"
-            }}
-          >
-            Remove
-          </button>
-        </div>
-      ))}
-    </div>
-  );
+          Remove
+        </button>
+      </div>
+    ))}
+  </div>
+);
 };
 
 export default RemoveEmployee;

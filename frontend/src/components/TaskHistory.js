@@ -98,54 +98,53 @@ const statusColor = (status) => ({
 
 const styles = {
   container: {
-    maxWidth: "1000px",
-    margin: "0 auto",
+    width: "100%",
+    padding: window.innerWidth < 768 ? "15px" : "30px",
     background: "#fff",
-    padding: "30px",
     borderRadius: "20px",
     boxShadow: "0 15px 30px rgba(0,0,0,0.1)",
-    transition: "0.3s",
   },
+
   title: {
     textAlign: "center",
-    fontSize: "1.8rem",
-    fontWeight: "700",
-    color: "#1e293b",
-    marginBottom: "30px",
+    fontSize: window.innerWidth < 768 ? "1.4rem" : "1.8rem",
+    marginBottom: "25px",
   },
+
   noTasks: {
     textAlign: "center",
-    fontSize: "1.1rem",
     color: "#6b7280",
   },
+
   tableWrapper: {
-    overflowX: "auto",
+    width: "100%",
+    overflowX: "auto",  // horizontal scroll on mobile
   },
+
   table: {
     width: "100%",
     borderCollapse: "collapse",
-    minWidth: "900px",
+    minWidth: "800px",
   },
+
   th: {
-    background: "linear-gradient(90deg, #4f46e5, #3b82f6)",
+    background: "#4f46e5",
     color: "#fff",
-    fontWeight: "700",
-    padding: "15px",
+    padding: "12px",
+    fontSize: "14px",
     textAlign: "left",
   },
+
   td: {
-    padding: "12px 15px",
-    color: "#1f2937",
+    padding: "10px",
+    fontSize: "13px",
   },
+
   trEven: {
     background: "#f9fafb",
-    transition: "0.3s",
   },
+
   trOdd: {
     background: "#fff",
-    transition: "0.3s",
   },
 };
-
-
-

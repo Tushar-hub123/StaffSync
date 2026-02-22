@@ -11,16 +11,18 @@
 /* ================= ANIMATED BACKGROUND ================= */
 
 .main-container {
-  height: 100vh;
+  min-height: 100vh;   /* instead of height */
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(-45deg, #ff6a6a, #fbc531, #ff9ff3, #54a0ff);
   background-size: 400% 400%;
   animation: gradientMove 10s ease infinite;
-  overflow: hidden;
+  position: relative;
+    overflow-x: hidden;   /* only hide left-right */
+  overflow-y: auto;     /* allow vertical scroll */
 }
-
 @keyframes gradientMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -181,4 +183,84 @@
 @keyframes float {
   from { transform: translateY(0px); }
   to { transform: translateY(40px); }
+}
+
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+  .login-wrapper {
+    width: 90%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .login-wrapper.slide {
+    flex-direction: column;   /* disable reverse slide on mobile */
+  }
+
+  .switch-panel,
+  .form-panel {
+    width: 100%;
+    padding: 40px 30px;
+  }
+
+  .switch-panel h2 {
+    font-size: 28px;
+  }
+
+  .form-panel h2 {
+    font-size: 24px;
+  }
+}
+
+/* Extra Small Devices (Phones) */
+
+@media (max-width: 576px) {
+  .main-container {
+    padding: 20px;
+  }
+
+  .login-wrapper {
+    border-radius: 20px;
+  }
+
+  .switch-panel {
+    padding: 35px 25px;
+    text-align: center;
+  }
+
+  .switch-panel h2 {
+    font-size: 24px;
+  }
+
+  .switch-panel p {
+    font-size: 14px;
+  }
+
+  .form-panel {
+    padding: 35px 25px;
+  }
+
+  .form-panel input {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .login-btn {
+    padding: 13px;
+    font-size: 13px;
+  }
+
+  .switch-button {
+    padding: 12px 25px;
+    font-size: 13px;
+  }
+
+  /* Reduce floating shapes on small screens */
+  .main-container::before,
+  .main-container::after {
+    width: 200px;
+    height: 200px;
+  }
 }
