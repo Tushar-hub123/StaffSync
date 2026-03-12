@@ -9,7 +9,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: " http://localhost:3000",
+    origin: "https://staffsync-frontend-u51l.vercel.app/",
     credentials: true,
   })
 );
