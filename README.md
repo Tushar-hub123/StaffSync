@@ -1,16 +1,17 @@
 # StaffSync 🚀  
 **Employee Task & Workflow Management System**
 
+StaffSync is a full-stack web application designed to manage employees and their tasks efficiently.  
+It allows admins to assign tasks with scheduled dates and deadlines, while employees can track, accept, and complete their tasks through a dedicated dashboard.
+
+---
+## 🌐 Live Deployment
+
 Frontend (Vercel)  
 https://staffsync-frontend-u51l.vercel.app
 
 Backend API (Render)  
 https://staffsync-jyvn.onrender.com
-
-StaffSync is a full-stack web application designed to manage employees and their tasks efficiently.  
-It allows admins to assign tasks with scheduled dates and deadlines, while employees can track, accept, and complete their tasks through a dedicated dashboard.
-
----
 
 ## 🧩 Features
 
