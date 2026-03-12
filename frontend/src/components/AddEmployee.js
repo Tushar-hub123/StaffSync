@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 import API from "../services/api";
 
@@ -8,9 +6,21 @@ export default function AddEmployee() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Email validation function
+  const isValidEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    return regex.test(email);
+  };
+
   const addEmployee = async () => {
     if (!name || !email || !password) {
       alert("Please fill all fields");
+      return;
+    }
+
+    // check gmail format
+    if (!isValidEmail(email)) {
+      alert("Please enter a valid Gmail address (example@gmail.com)");
       return;
     }
 
@@ -43,6 +53,7 @@ export default function AddEmployee() {
         <input
           style={styles.input}
           placeholder="Email"
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -108,4 +119,4 @@ const styles = {
     fontWeight: "600",
     width: "100%",
   },
-};  
+};
