@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import {
   getTasksByStatus,
   acceptTask,
@@ -26,7 +26,7 @@ const EmployeeDashboard = () => {
 
   const formatDate = (date) => new Date(date).toLocaleDateString();
 
-  const fetchTasks = async (status) => {
+  const fetchTasks = useCallback(async (status) => {
     try {
       setLoading(true);
       setActive(status);
@@ -37,12 +37,11 @@ const EmployeeDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [employeeId]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchTasks("ALL");
-  }, []);
+  }, [fetchTasks]);
 
   const handleAccept = async (id) => {
     await acceptTask(id);
