@@ -68,7 +68,7 @@ Create .env file inside backend:
 PORT= 5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
-ADMIN_EMAIL=admin@example.com
+ADMIN_EMAIL=admin@ems.com
 ADMIN_PASSWORD=admin123
 
 Run backend:
