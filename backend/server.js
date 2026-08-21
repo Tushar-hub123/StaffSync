@@ -14,9 +14,18 @@ app.use(
   })
 );
 app.use(express.json());
+
+// Health check route
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    message: "Server is healthy",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
 app.use("/api/tasks", require("./routes/taskRoutes"));
-
-
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/employee", require("./routes/employeeRoutes"));
 
